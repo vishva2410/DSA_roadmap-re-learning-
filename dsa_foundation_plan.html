@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSA Foundation Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e0f;
+    --surface: #16171a;
+    --card: #1c1d21;
+    --border: #2a2b30;
+    --accent: #e8ff57;
+    --accent2: #57c8ff;
+    --accent3: #ff8c57;
+    --accent4: #b57fff;
+    --text: #f0f0f0;
+    --muted: #888;
+    --easy: #57ffb8;
+    --medium: #ffcc57;
+    --hard: #ff6b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 32px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .top-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+  .top-header h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .top-header p { color: var(--muted); font-size: 13px; }
+  .meta-row {
+    display: flex; gap: 20px; margin-top: 16px; flex-wrap: wrap;
+  }
+  .meta-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+  }
+  .meta-chip span { color: var(--accent); font-weight: 600; }
+
+  /* HOW TO STUDY */
+  .method-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .method-section h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .steps { display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .step-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(232,255,87,0.1);
+    border-radius: 4px;
+    padding: 2px 8px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .step p { font-size: 13px; color: var(--muted); }
+  .step p strong { color: var(--text); }
+
+  /* TOPIC SECTIONS */
+  .topic-block { margin-bottom: 40px; }
+  .topic-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .topic-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .topic-title { font-size: 16px; font-weight: 500; }
+  .topic-count { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  /* CONCEPT BOX */
+  .concept-box {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .concept-box h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .concept-box p { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+  .concept-box p strong { color: var(--text); }
+  .algo-tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    background: rgba(87,200,255,0.1);
+    color: var(--accent2);
+    border: 1px solid rgba(87,200,255,0.2);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin: 3px 3px 0 0;
+  }
+
+  /* PROBLEM TABLE */
+  .prob-table { width: 100%; border-collapse: collapse; }
+  .prob-table thead tr {
+    border-bottom: 1px solid var(--border);
+  }
+  .prob-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 6px 8px;
+    text-align: left;
+    font-weight: 500;
+  }
+  .prob-table td {
+    padding: 8px 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    vertical-align: top;
+  }
+  .prob-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .diff-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .easy-b { background: rgba(87,255,184,0.1); color: var(--easy); }
+  .medium-b { background: rgba(255,204,87,0.1); color: var(--medium); }
+  .prob-name { font-size: 13px; color: var(--text); font-weight: 400; }
+  .platform-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .lc { color: #ff8c00; border-color: rgba(255,140,0,0.3); }
+  .gfg { color: #1f9e4a; border-color: rgba(31,158,74,0.3); }
+  .cn { color: #57c8ff; border-color: rgba(87,200,255,0.3); }
+  .idea-tag {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* DIVIDER */
+  .phase-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 32px 0;
+  }
+  .phase-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .phase-divider-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* TIME PLAN */
+  .time-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .time-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .time-table td:first-child {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--accent);
+    font-size: 12px;
+    white-space: nowrap;
+    width: 100px;
+  }
+  .time-table td:last-child { color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="top-header">
+  <h1>// DSA FOUNDATION PLAN</h1>
+  <p>Build concept memory from scratch — easy → medium. Arrays, Strings, Linked Lists + all core topics.</p>
+  <div class="meta-row">
+    <div class="meta-chip">Problems: <span>120+</span></div>
+    <div class="meta-chip">Topics: <span>10</span></div>
+    <div class="meta-chip">Platforms: <span>LC · GFG · CN · HackerRank</span></div>
+    <div class="meta-chip">Goal: <span>Solve without AI</span></div>
+  </div>
+</div>
+
+<!-- HOW TO STUDY -->
+<div class="method-section">
+  <h2>// How to study each problem</h2>
+  <div class="steps">
+    <div class="step"><span class="step-num">01</span><p><strong>Read → Close → Think.</strong> Don't look at hints. Spend 15–20 min on easy, 30 min on medium. Time yourself.</p></div>
+    <div class="step"><span class="step-num">02</span><p><strong>Write the approach in English first.</strong> "I'll use two pointers, starting at both ends, and move left if..." — this forces clarity before code.</p></div>
+    <div class="step"><span class="step-num">03</span><p><strong>Trace through a small example by hand.</strong> Draw the array. Move the pointers manually on paper. Don't trust your head.</p></div>
+    <div class="step"><span class="step-num">04</span><p><strong>Code it. Then write the KEY INSIGHT in one sentence</strong> in a personal notebook. That sentence is what you'll remember — not the code.</p></div>
+    <div class="step"><span class="step-num">05</span><p><strong>After finishing a topic</strong>, revisit all its problems after 3 days without looking at your notes. If you can't do it, redo. This is spaced repetition.</p></div>
+  </div>
+</div>
+
+
+<!-- ===================== TOPIC 1: ARRAYS ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(232,255,87,0.1);color:var(--accent)">TOPIC 01</span>
+    <span class="topic-title">Arrays — Basics & Traversal</span>
+    <span class="topic-count">16 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Indexing, traversal, in-place operations, reversal, rotation, frequency counting.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">Linear scan</span>
+    <span class="algo-tag">Two pointers</span>
+    <span class="algo-tag">Counting/Frequency</span>
+    <span class="algo-tag">In-place swap</span>
+    <span class="algo-tag">Prefix sum</span>
+    <p style="margin-top:10px"><strong>Key question to ask yourself:</strong> "Can I solve this in one pass? Can I avoid extra space?"</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Find the largest element in array</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Single scan, track max</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Second largest element in array</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Track max and second-max in one pass</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Reverse an array</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Two pointers: swap from both ends</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Check if array is sorted</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Compare arr[i] with arr[i+1]</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Remove duplicates from sorted array</td><td><span class="platform-tag lc">LC #26</span></td><td class="idea-tag">Two pointers: write pointer + read pointer</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Move zeroes to end</td><td><span class="platform-tag lc">LC #283</span></td><td class="idea-tag">Two pointers: swap non-zero to front</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Left rotate array by 1</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Store first, shift all left, place at end</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Rotate array by K places</td><td><span class="platform-tag lc">LC #189</span></td><td class="idea-tag">Reverse full, reverse first K, reverse rest</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Linear search</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Scan each element, return index</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Find union and intersection of two sorted arrays</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Two pointers, compare and advance</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Missing number in array [0..n]</td><td><span class="platform-tag lc">LC #268</span></td><td class="idea-tag">XOR all indices + values, or sum formula</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Single number (every element appears twice except one)</td><td><span class="platform-tag lc">LC #136</span></td><td class="idea-tag">XOR all elements → duplicates cancel</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Count of occurrences of each element</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">HashMap: element → count</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Maximum consecutive 1s</td><td><span class="platform-tag lc">LC #485</span></td><td class="idea-tag">Counter: reset on 0, track max</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Running sum of 1D array</td><td><span class="platform-tag lc">LC #1480</span></td><td class="idea-tag">Prefix sum: arr[i] += arr[i-1]</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Richest customer wealth</td><td><span class="platform-tag lc">LC #1672</span></td><td class="idea-tag">Row sum, track max — 2D array warmup</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 2: STRINGS ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(87,200,255,0.1);color:var(--accent2)">TOPIC 02</span>
+    <span class="topic-title">Strings — Character-level Operations</span>
+    <span class="topic-count">14 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Character arrays, ASCII tricks, frequency arrays, string comparison, palindrome checks, anagrams.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">Frequency array (size 26)</span>
+    <span class="algo-tag">Two pointers</span>
+    <span class="algo-tag">Expand from center</span>
+    <span class="algo-tag">StringBuilder / char array</span>
+    <p style="margin-top:10px"><strong>Key insight:</strong> Strings are just character arrays. Every array trick works here. ASCII('a')=97.</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Reverse a string</td><td><span class="platform-tag lc">LC #344</span></td><td class="idea-tag">Two pointers, swap in place</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Check if string is palindrome</td><td><span class="platform-tag lc">LC #125</span></td><td class="idea-tag">Two pointers from ends, skip non-alphanumeric</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Valid anagram</td><td><span class="platform-tag lc">LC #242</span></td><td class="idea-tag">Frequency array of size 26, compare</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">First occurrence of substring (strStr)</td><td><span class="platform-tag lc">LC #28</span></td><td class="idea-tag">Sliding window or built-in; understand O(n*m)</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Count vowels and consonants</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Char scan, check against vowel set</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Reverse words in a string</td><td><span class="platform-tag lc">LC #151</span></td><td class="idea-tag">Split by spaces, reverse list, rejoin</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Check if two strings are rotations of each other</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Concatenate s1+s1, check if s2 is substring</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Count and say (describe the previous term)</td><td><span class="platform-tag lc">LC #38</span></td><td class="idea-tag">Scan runs of same char, build next string</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Roman to integer</td><td><span class="platform-tag lc">LC #13</span></td><td class="idea-tag">Scan right to left; if curr < prev, subtract</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Longest common prefix</td><td><span class="platform-tag lc">LC #14</span></td><td class="idea-tag">Compare char by char across all strings</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Remove all occurrences of a substring</td><td><span class="platform-tag lc">LC #1910</span></td><td class="idea-tag">Use stack or keep replacing until not found</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Greatest common divisor of strings</td><td><span class="platform-tag lc">LC #1071</span></td><td class="idea-tag">Check s1+s2 == s2+s1, then GCD of lengths</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Isomorphic strings</td><td><span class="platform-tag lc">LC #205</span></td><td class="idea-tag">Two hashmaps: s→t and t→s mapping</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Is subsequence</td><td><span class="platform-tag lc">LC #392</span></td><td class="idea-tag">Two pointers: advance s-pointer only on match</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 3: LINKED LISTS ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(181,127,255,0.1);color:var(--accent4)">TOPIC 03</span>
+    <span class="topic-title">Linked Lists — Pointer Mechanics</span>
+    <span class="topic-count">18 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Node structure, pointer manipulation, dummy node trick, fast/slow pointers, reversing, merging.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">Dummy head node</span>
+    <span class="algo-tag">Fast & slow pointers</span>
+    <span class="algo-tag">Reverse in-place</span>
+    <span class="algo-tag">Two-pass (find length)</span>
+    <span class="algo-tag">HashMap (detect cycle)</span>
+    <p style="margin-top:10px"><strong>Key insight:</strong> Always draw the pointer arrows. Every LL problem is about which pointer points where. Draw before you code.</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Print linked list</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Traverse: while node != null, print node.val</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Insert node at beginning / end / position</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Adjust next pointers carefully</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Delete node from linked list</td><td><span class="platform-tag lc">LC #237</span></td><td class="idea-tag">Copy next node's val, skip next node</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Length of linked list</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Count while traversing</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Search element in linked list</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Linear scan, return true if found</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Reverse a linked list</td><td><span class="platform-tag lc">LC #206</span></td><td class="idea-tag">Three pointers: prev, curr, next. Rewire each node</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Middle of linked list</td><td><span class="platform-tag lc">LC #876</span></td><td class="idea-tag">Fast/slow: fast moves 2, slow moves 1. Slow = middle</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Detect cycle in linked list</td><td><span class="platform-tag lc">LC #141</span></td><td class="idea-tag">Fast/slow: if they meet, cycle exists</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Check if linked list is palindrome</td><td><span class="platform-tag lc">LC #234</span></td><td class="idea-tag">Find mid, reverse second half, compare both halves</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Merge two sorted linked lists</td><td><span class="platform-tag lc">LC #21</span></td><td class="idea-tag">Dummy head + compare and advance the smaller</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Remove duplicates from sorted linked list</td><td><span class="platform-tag lc">LC #83</span></td><td class="idea-tag">Skip node if curr.val == curr.next.val</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Remove nth node from end</td><td><span class="platform-tag lc">LC #19</span></td><td class="idea-tag">Two pointers: gap of N between fast and slow</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Intersection point of two linked lists</td><td><span class="platform-tag lc">LC #160</span></td><td class="idea-tag">Two pointers: switch to other list on null. Meet at intersection</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Count nodes in loop (if cycle exists)</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Fast/slow to detect, then count loop length</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Segregate even and odd nodes</td><td><span class="platform-tag lc">LC #328</span></td><td class="idea-tag">Two separate lists (even/odd), join at end</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Add 1 to a number represented as linked list</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Reverse, add carry, reverse back</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Convert array to linked list and back</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Build nodes iteratively, track tail</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Doubly linked list — insert and delete</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Maintain prev and next pointers both ways</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 4: SEARCHING ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(255,140,87,0.1);color:var(--accent3)">TOPIC 04</span>
+    <span class="topic-title">Searching — Linear & Binary Search</span>
+    <span class="topic-count">12 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Binary search template, boundary conditions (lo, hi, mid), searching in rotated arrays, first/last occurrence.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">Binary search: lo=0 hi=n-1</span>
+    <span class="algo-tag">Upper / lower bound</span>
+    <span class="algo-tag">Search on answer</span>
+    <p style="margin-top:10px"><strong>Template:</strong> lo=0, hi=n-1. While lo≤hi: mid=lo+(hi-lo)/2. Decide: go left or go right. Never use lo+hi (overflow).</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Binary search</td><td><span class="platform-tag lc">LC #704</span></td><td class="idea-tag">Standard template — master this first</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">First and last position of element in sorted array</td><td><span class="platform-tag lc">LC #34</span></td><td class="idea-tag">Two binary searches: lower_bound, upper_bound</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Count occurrences of element in sorted array</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">last_pos - first_pos + 1</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Search insert position</td><td><span class="platform-tag lc">LC #35</span></td><td class="idea-tag">Binary search, return lo when not found</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Sqrt(x) using binary search</td><td><span class="platform-tag lc">LC #69</span></td><td class="idea-tag">Binary search on answer: find largest k where k*k ≤ x</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Find peak element</td><td><span class="platform-tag lc">LC #162</span></td><td class="idea-tag">Binary search: go toward the rising slope</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Guess number higher or lower</td><td><span class="platform-tag lc">LC #374</span></td><td class="idea-tag">Binary search with API call replacing comparison</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Find smallest letter greater than target</td><td><span class="platform-tag lc">LC #744</span></td><td class="idea-tag">Binary search with wrap-around</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Two sum in sorted array (binary search version)</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">For each element, binary search for complement</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Floor and ceiling in sorted array</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Lower bound gives ceiling; floor is just below it</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Number of times sorted array is rotated</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Index of minimum element = rotation count</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Element that appears once (rest appear twice)</td><td><span class="platform-tag lc">LC #540</span></td><td class="idea-tag">Binary search on even/odd index pairs</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 5: SORTING ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(232,255,87,0.1);color:var(--accent)">TOPIC 05</span>
+    <span class="topic-title">Sorting — Algorithms & Application</span>
+    <span class="topic-count">10 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Implement bubble, selection, insertion, merge, quick sort. Understand when to use which. Then apply sorting as a preprocessing step.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">Bubble sort O(n²)</span>
+    <span class="algo-tag">Merge sort O(n log n)</span>
+    <span class="algo-tag">Quick sort O(n log n)</span>
+    <span class="algo-tag">Counting sort O(n+k)</span>
+    <span class="algo-tag">Sort + greedy</span>
+    <p style="margin-top:10px"><strong>Key insight:</strong> Sorting unlocks two-pointer and binary search. If a problem has no order, ask: "what if I sort it first?"</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Implement bubble sort</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Adjacent swaps, largest bubbles to end each pass</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Implement selection sort</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Find min in unsorted part, swap to front</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Implement insertion sort</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Insert each element into its correct position in sorted part</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Merge sort — implement</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Divide in half recursively, merge sorted halves</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Sort colors (Dutch National Flag)</td><td><span class="platform-tag lc">LC #75</span></td><td class="idea-tag">3 pointers: low, mid, high. Single pass</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Merge sorted array (in-place)</td><td><span class="platform-tag lc">LC #88</span></td><td class="idea-tag">Fill from the back, compare from both ends</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Squares of a sorted array</td><td><span class="platform-tag lc">LC #977</span></td><td class="idea-tag">Two pointers: compare abs values, fill result from back</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Largest number (custom sort)</td><td><span class="platform-tag lc">LC #179</span></td><td class="idea-tag">Custom comparator: compare ab vs ba as strings</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Contains duplicate</td><td><span class="platform-tag lc">LC #217</span></td><td class="idea-tag">Sort then check adj, OR use a HashSet</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Majority element (appears > n/2 times)</td><td><span class="platform-tag lc">LC #169</span></td><td class="idea-tag">Boyer-Moore voting: cancel out non-majority</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 6: HASHING ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(87,200,255,0.1);color:var(--accent2)">TOPIC 06</span>
+    <span class="topic-title">Hashing — HashMap & HashSet</span>
+    <span class="topic-count">10 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> O(1) lookup, frequency counting, detecting duplicates, index storage, complement-finding (two sum).</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">HashMap: value → count</span>
+    <span class="algo-tag">HashMap: value → index</span>
+    <span class="algo-tag">HashSet: seen elements</span>
+    <span class="algo-tag">Complement lookup</span>
+    <p style="margin-top:10px"><strong>Key insight:</strong> When brute force is O(n²) because you're searching for something, a HashMap usually brings it to O(n) by making the search O(1).</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Two sum</td><td><span class="platform-tag lc">LC #1</span></td><td class="idea-tag">HashMap: store value→index, look for complement</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Check if array has duplicates within K distance</td><td><span class="platform-tag lc">LC #219</span></td><td class="idea-tag">Sliding HashSet of size K</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">First non-repeating character</td><td><span class="platform-tag lc">LC #387</span></td><td class="idea-tag">Freq map, then scan string for count==1</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Find all elements appearing more than n/3 times</td><td><span class="platform-tag lc">LC #229</span></td><td class="idea-tag">HashMap count or Boyer-Moore for 2 candidates</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Ransom note (can you build s2 using chars of s1)</td><td><span class="platform-tag lc">LC #383</span></td><td class="idea-tag">Freq map of s1, reduce for each char in s2</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Word pattern</td><td><span class="platform-tag lc">LC #290</span></td><td class="idea-tag">Two hashmaps: pattern char ↔ word, bijection</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Longest consecutive sequence</td><td><span class="platform-tag lc">LC #128</span></td><td class="idea-tag">HashSet; only start counting from sequence start</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Happy number</td><td><span class="platform-tag lc">LC #202</span></td><td class="idea-tag">HashSet of seen sums; cycle detection</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Number of good pairs</td><td><span class="platform-tag lc">LC #1512</span></td><td class="idea-tag">For each num, add its previous count to answer</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Subarrays with sum equal to K (count)</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Prefix sum + hashmap: look for prefix[i]-K</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 7: RECURSION ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(181,127,255,0.1);color:var(--accent4)">TOPIC 07</span>
+    <span class="topic-title">Recursion — Base Case & Trust the Call</span>
+    <span class="topic-count">10 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Recursion tree, base case, return values vs void, call stack mental model.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">Reduce + recurse</span>
+    <span class="algo-tag">Head recursion</span>
+    <span class="algo-tag">Tail recursion</span>
+    <span class="algo-tag">Divide & conquer</span>
+    <p style="margin-top:10px"><strong>Key insight:</strong> "Trust the recursion." Assume the function works for n-1. Just handle n using that result. Don't simulate the whole stack in your head.</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Factorial of N</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">fact(n) = n * fact(n-1). Base: fact(0)=1</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Fibonacci number</td><td><span class="platform-tag lc">LC #509</span></td><td class="idea-tag">fib(n) = fib(n-1)+fib(n-2). Base: 0,1</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Sum of first N natural numbers</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">sum(n) = n + sum(n-1)</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Power of a number (x^n)</td><td><span class="platform-tag lc">LC #50</span></td><td class="idea-tag">Fast power: pow(x,n) = pow(x,n/2)^2. Handle odd n</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Print 1 to N without loop</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Recurse(n-1) first (head), then print n</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Reverse a string using recursion</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Recurse on s[1:], append s[0] at end</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Check palindrome using recursion</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Check first+last, recurse on middle</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Tower of Hanoi</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Move n-1 to helper, move largest to dest, move n-1 from helper</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Count zeros in N recursively</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Count last digit==0, recurse on n/10</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Binary search using recursion</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Pass lo,hi. Base: lo>hi. Recurse on half</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 8: STACK & QUEUE ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(255,140,87,0.1);color:var(--accent3)">TOPIC 08</span>
+    <span class="topic-title">Stack & Queue — LIFO / FIFO Thinking</span>
+    <span class="topic-count">12 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Stack for undo/nested problems, queue for order-preserving, monotonic stack for next-greater problems.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">Stack: push/pop/peek</span>
+    <span class="algo-tag">Monotonic stack</span>
+    <span class="algo-tag">Queue with two stacks</span>
+    <span class="algo-tag">Balanced brackets</span>
+    <p style="margin-top:10px"><strong>Key insight:</strong> When you see "nearest/next greater/smaller element" — think monotonic stack. When you see "undo" or "nested" — think stack.</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Valid parentheses</td><td><span class="platform-tag lc">LC #20</span></td><td class="idea-tag">Push open brackets. On close, check stack top matches</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Implement stack using array</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Array + top pointer. Push increments top, pop decrements</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Implement queue using array</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Circular array with front and rear pointers</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Implement stack using queues</td><td><span class="platform-tag lc">LC #225</span></td><td class="idea-tag">Push: enqueue, then rotate n-1 times so new element is front</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Implement queue using stacks</td><td><span class="platform-tag lc">LC #232</span></td><td class="idea-tag">Two stacks: push to s1, pop from s2 (refill from s1 when empty)</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Min stack (get min in O(1))</td><td><span class="platform-tag lc">LC #155</span></td><td class="idea-tag">Two stacks: one normal, one tracking current min</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Reverse a string using stack</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Push all chars, pop to get reversed order</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Next greater element I</td><td><span class="platform-tag lc">LC #496</span></td><td class="idea-tag">Monotonic stack: pop when current > top, that's the NGE</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Baseball game (stack simulation)</td><td><span class="platform-tag lc">LC #682</span></td><td class="idea-tag">Simulate with stack: C pops, D doubles, + sums top two</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Make string great (remove adjacent same case duplicates)</td><td><span class="platform-tag lc">LC #1544</span></td><td class="idea-tag">Stack: push char; pop if top is same letter different case</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Evaluate reverse polish notation</td><td><span class="platform-tag lc">LC #150</span></td><td class="idea-tag">Stack: push numbers, pop two on operator, push result</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Number of recent calls</td><td><span class="platform-tag lc">LC #933</span></td><td class="idea-tag">Queue: add ping, remove all older than t-3000</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 9: TREES ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(87,255,184,0.15);color:#57ffb8">TOPIC 09</span>
+    <span class="topic-title">Binary Trees — Traversal & Structure</span>
+    <span class="topic-count">14 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Tree node structure, all traversals (inorder, preorder, postorder, level-order), height, diameter, symmetry.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">DFS: recursion</span>
+    <span class="algo-tag">BFS: queue level-order</span>
+    <span class="algo-tag">Return value upward</span>
+    <span class="algo-tag">Global variable trick</span>
+    <p style="margin-top:10px"><strong>Key insight:</strong> Most tree problems = solve for left subtree + right subtree + do something at root. Draw the tree. Identify what to return up.</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Inorder traversal (left-root-right)</td><td><span class="platform-tag lc">LC #94</span></td><td class="idea-tag">Recurse left, visit root, recurse right</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Preorder traversal (root-left-right)</td><td><span class="platform-tag lc">LC #144</span></td><td class="idea-tag">Visit root first, then left then right</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Postorder traversal (left-right-root)</td><td><span class="platform-tag lc">LC #145</span></td><td class="idea-tag">Visit children first, root last</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Level order traversal (BFS)</td><td><span class="platform-tag lc">LC #102</span></td><td class="idea-tag">Queue: enqueue root, process level by level</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Maximum depth of binary tree</td><td><span class="platform-tag lc">LC #104</span></td><td class="idea-tag">1 + max(depth(left), depth(right))</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Minimum depth of binary tree</td><td><span class="platform-tag lc">LC #111</span></td><td class="idea-tag">BFS: first leaf encountered = min depth</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Symmetric tree</td><td><span class="platform-tag lc">LC #101</span></td><td class="idea-tag">isMirror(left, right): check val, recurse outer & inner</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Invert / mirror binary tree</td><td><span class="platform-tag lc">LC #226</span></td><td class="idea-tag">Swap left and right children, recurse on both</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Same tree (are two trees identical)</td><td><span class="platform-tag lc">LC #100</span></td><td class="idea-tag">Compare root vals + same(left,left) + same(right,right)</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Path sum (root to leaf = target)</td><td><span class="platform-tag lc">LC #112</span></td><td class="idea-tag">Subtract node val from target, check 0 at leaf</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Count nodes in binary tree</td><td><span class="platform-tag lc">LC #222</span></td><td class="idea-tag">1 + count(left) + count(right)</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Balanced binary tree (height balanced)</td><td><span class="platform-tag lc">LC #110</span></td><td class="idea-tag">Return height; if |left-right|>1, return -1 (unbalanced)</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Diameter of binary tree</td><td><span class="platform-tag lc">LC #543</span></td><td class="idea-tag">At each node: left_height + right_height. Track global max</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Lowest common ancestor of BST</td><td><span class="platform-tag lc">LC #235</span></td><td class="idea-tag">If both < root → go left. Both > root → go right. Else root is LCA</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ===================== TOPIC 10: MATH & BIT MANIPULATION ===================== -->
+<div class="topic-block">
+  <div class="topic-header">
+    <span class="topic-num" style="background:rgba(232,255,87,0.1);color:var(--accent)">TOPIC 10</span>
+    <span class="topic-title">Math & Bit Manipulation</span>
+    <span class="topic-count">8 problems</span>
+  </div>
+
+  <div class="concept-box">
+    <h3>Core Concepts to Build</h3>
+    <p><strong>What you're learning:</strong> Modular arithmetic, digit extraction, GCD/LCM, bitwise tricks (XOR, AND, shift), power of 2 check.</p>
+    <p><strong>Algorithm patterns:</strong></p>
+    <span class="algo-tag">XOR properties</span>
+    <span class="algo-tag">Bit masking</span>
+    <span class="algo-tag">Euclidean GCD</span>
+    <span class="algo-tag">n & (n-1) trick</span>
+    <p style="margin-top:10px"><strong>Key insight:</strong> XOR of same numbers = 0. XOR with 0 = itself. n & (n-1) clears the rightmost set bit. These three facts power dozens of problems.</p>
+  </div>
+
+  <table class="prob-table">
+    <thead><tr>
+      <th style="width:60px">Diff</th>
+      <th>Problem</th>
+      <th style="width:70px">Platform</th>
+      <th>Key Idea</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Count set bits (Hamming weight)</td><td><span class="platform-tag lc">LC #191</span></td><td class="idea-tag">n &= (n-1) removes one set bit each time; count iterations</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Power of two</td><td><span class="platform-tag lc">LC #231</span></td><td class="idea-tag">n > 0 && (n & (n-1)) == 0</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Reverse bits of integer</td><td><span class="platform-tag lc">LC #190</span></td><td class="idea-tag">Extract last bit, shift result left, shift n right. 32 times</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Single number (XOR)</td><td><span class="platform-tag lc">LC #136</span></td><td class="idea-tag">XOR all — pairs cancel, unique survives</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">GCD and LCM of two numbers</td><td><span class="platform-tag gfg">GFG</span></td><td class="idea-tag">Euclidean: gcd(a,b) = gcd(b, a%b). LCM = a*b/gcd</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Check if number is palindrome</td><td><span class="platform-tag lc">LC #9</span></td><td class="idea-tag">Reverse digits, compare with original</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Fizz buzz</td><td><span class="platform-tag lc">LC #412</span></td><td class="idea-tag">Modulo: check div by 15 first, then 3, then 5</td></tr>
+      <tr><td><span class="diff-badge easy-b">Easy</span></td><td class="prob-name">Add binary strings</td><td><span class="platform-tag lc">LC #67</span></td><td class="idea-tag">Add from right with carry. Build result char by char</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- TIME PLAN -->
+<div class="phase-divider"><div class="phase-divider-line"></div><span class="phase-divider-label">// TIME PLAN</span><div class="phase-divider-line"></div></div>
+
+<div class="concept-box">
+  <h3>Realistic Schedule — No Rush</h3>
+  <table class="time-table">
+    <tr><td>Week 1–2</td><td>Arrays + Strings (30 problems). Do 2–3 per day. Revisit on day 7 without notes.</td><td style="color:#57ffb8">Base</td></tr>
+    <tr><td>Week 3–4</td><td>Linked Lists + Recursion (28 problems). Draw every pointer. Trust the recursion.</td><td style="color:#57ffb8">Pointer mind</td></tr>
+    <tr><td>Week 5</td><td>Sorting + Searching (22 problems). Implement sorts from scratch. Binary search until it's automatic.</td><td style="color:#ffcc57">Algorithm</td></tr>
+    <tr><td>Week 6</td><td>Hashing + Stack/Queue (22 problems). Focus on when to use which structure.</td><td style="color:#ffcc57">Data structures</td></tr>
+    <tr><td>Week 7–8</td><td>Trees + Math/Bits (22 problems). Trees will feel like recursion you already know.</td><td style="color:#ff8c57">Trees</td></tr>
+    <tr><td>Week 9+</td><td>Revisit all 10 topics once with medium problems. You'll find them much more doable.</td><td style="color:#b57fff">Level up</td></tr>
+  </table>
+  <div style="margin-top:14px;padding:10px 0;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">
+    Total: ~8 weeks at 2 problems/day = strong foundation. After this, Sliding Window, Two Pointers (advanced), and DP will come naturally.
+  </div>
+</div>
+
+</body>
+</html>
